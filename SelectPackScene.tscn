@@ -1,0 +1,172 @@
+[gd_scene load_steps=11 format=3 uid="uid://edw4qjfy4cn6"]
+
+[ext_resource type="Script" uid="uid://dyf6y5w6iluig" path="res://Scripts/SelectPackScene.gd" id="1_3q0s5"]
+[ext_resource type="ArrayMesh" uid="uid://bp4gnbgvu0bwe" path="res://closed_obj/5DCE4AA322A1EE89835AF205F36DC641DA59B16E_Saurus Closed.obj" id="1_w0gbj"]
+[ext_resource type="Texture2D" uid="uid://on2tskeiisd6" path="res://TexturesBakugans/BF1CBB1F3B2434C729A43BFD7CA68AD94AA29AC4_saurus pyrus hd.png" id="2_3q0s5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kg3fj"]
+albedo_texture = ExtResource("2_3q0s5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_koxi3"]
+albedo_texture = ExtResource("2_3q0s5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lost"]
+albedo_texture = ExtResource("2_3q0s5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ecgi"]
+albedo_texture = ExtResource("2_3q0s5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtmml"]
+albedo_texture = ExtResource("2_3q0s5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lx8kg"]
+albedo_texture = ExtResource("2_3q0s5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qfxfe"]
+albedo_texture = ExtResource("2_3q0s5")
+
+[node name="SelectPackScene" type="Node3D"]
+script = ExtResource("1_3q0s5")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+custom_minimum_size = Vector2(350, 350)
+offset_right = 512.0
+offset_bottom = 512.0
+scale = Vector2(0.75, 0.75)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Preview3D" type="Node3D" parent="SubViewportContainer/SubViewport"]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Preview3D"]
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0, 1.5, 3)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Preview3D"]
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0, 1.5, 3)
+
+[node name="MeshInstance3D_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Preview3D"]
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, -0.108387, 1.5, 0.456603)
+mesh = ExtResource("1_w0gbj")
+skeleton = NodePath("../DirectionalLight3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_kg3fj")
+surface_material_override/1 = SubResource("StandardMaterial3D_koxi3")
+surface_material_override/2 = SubResource("StandardMaterial3D_5lost")
+surface_material_override/3 = SubResource("StandardMaterial3D_1ecgi")
+surface_material_override/4 = SubResource("StandardMaterial3D_dtmml")
+surface_material_override/5 = SubResource("StandardMaterial3D_lx8kg")
+surface_material_override/6 = SubResource("StandardMaterial3D_qfxfe")
+
+[node name="RotationTimer" type="Timer" parent="SubViewportContainer/SubViewport/Preview3D"]
+wait_time = 0.01
+autostart = true
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="."]
+custom_minimum_size = Vector2(350, 350)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -192.0
+offset_right = 320.0
+offset_bottom = 512.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer2"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Preview3D" type="Node3D" parent="SubViewportContainer2/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.90546, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer2/SubViewport/Preview3D"]
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0, 1.5, 3)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer2/SubViewport/Preview3D"]
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0, 1.5, 3)
+
+[node name="MeshInstance3D_2" type="MeshInstance3D" parent="SubViewportContainer2/SubViewport/Preview3D"]
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, -0.108387, 1.5, 0.456603)
+mesh = ExtResource("1_w0gbj")
+skeleton = NodePath("../DirectionalLight3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_kg3fj")
+surface_material_override/1 = SubResource("StandardMaterial3D_koxi3")
+surface_material_override/2 = SubResource("StandardMaterial3D_5lost")
+surface_material_override/3 = SubResource("StandardMaterial3D_1ecgi")
+surface_material_override/4 = SubResource("StandardMaterial3D_dtmml")
+surface_material_override/5 = SubResource("StandardMaterial3D_lx8kg")
+surface_material_override/6 = SubResource("StandardMaterial3D_qfxfe")
+
+[node name="RotationTimer" type="Timer" parent="SubViewportContainer2/SubViewport/Preview3D"]
+wait_time = 0.01
+autostart = true
+
+[node name="SubViewportContainer3" type="SubViewportContainer" parent="."]
+custom_minimum_size = Vector2(350, 350)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -384.0
+offset_right = 128.0
+offset_bottom = 512.0
+grow_horizontal = 0
+scale = Vector2(0.75, 0.75)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer3"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Preview3D" type="Node3D" parent="SubViewportContainer3/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.64076, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer3/SubViewport/Preview3D"]
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0, 1.5, 3)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer3/SubViewport/Preview3D"]
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0, 1.5, 3)
+
+[node name="MeshInstance3D_3" type="MeshInstance3D" parent="SubViewportContainer3/SubViewport/Preview3D"]
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, -0.108387, 1.5, 0.456603)
+mesh = ExtResource("1_w0gbj")
+skeleton = NodePath("../DirectionalLight3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_kg3fj")
+surface_material_override/1 = SubResource("StandardMaterial3D_koxi3")
+surface_material_override/2 = SubResource("StandardMaterial3D_5lost")
+surface_material_override/3 = SubResource("StandardMaterial3D_1ecgi")
+surface_material_override/4 = SubResource("StandardMaterial3D_dtmml")
+surface_material_override/5 = SubResource("StandardMaterial3D_lx8kg")
+surface_material_override/6 = SubResource("StandardMaterial3D_qfxfe")
+
+[node name="RotationTimer" type="Timer" parent="SubViewportContainer3/SubViewport/Preview3D"]
+wait_time = 0.01
+autostart = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -130.0
+offset_right = 200.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Выбери набор" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Выбрать этот набор"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Выбрать этот набор"
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Выбрать другую стихию"

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxxole0ivot2s"]
+
+[ext_resource type="Script" uid="uid://ddb2de4cv2pb1" path="res://Scripts/select_pack_menu.gd" id="1_1dafh"]
+[ext_resource type="Texture2D" uid="uid://t26kp4alv38h" path="res://Icon/PyrusButton.png" id="2_qbfuh"]
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1dafh")
+
+[node name="PyrusButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 952.0
+offset_top = 448.0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture_normal = ExtResource("2_qbfuh")
