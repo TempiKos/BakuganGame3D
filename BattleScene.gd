@@ -76,17 +76,22 @@ func _setup_battle_field():
 		
 		field.material_override = field_material
 		
-		# Добавляем коллизию для поля
+		# ИСПРАВЛЕНИЕ: Создаем StaticBody3D для поля вместо простого добавления коллизии
+		var field_body = StaticBody3D.new()
+		field_body.name = "FieldBody"
+		field_body.position = Vector3(0, -0.25, 0)
+		
+		# Добавляем коллизию к StaticBody3D
 		var collision_shape = CollisionShape3D.new()
 		var box_shape = BoxShape3D.new()
 		box_shape.size = Vector3(25, 0.5, 25)
 		collision_shape.shape = box_shape
-		collision_shape.position = Vector3(0, -0.25, 0)
+		field_body.add_child(collision_shape)
 		
-		if not field.has_node("CollisionShape3D"):
-			field.add_child(collision_shape)
+		# Добавляем StaticBody3D в сцену
+		add_child(field_body)
 		
-		print("Поле боя создано")
+		print("Поле боя создано с коллизией")
 
 func _setup_camera_and_lighting():
 	# Настраиваем камеру для лучшего обзора
@@ -219,39 +224,43 @@ func _spawn_bakugan(index: int):
 		_spawn_fallback_bakugan(bakugan_data.name)
 		return
 	
+	# Создаем RigidBody3D для бакугана
+	var rigid_body = RigidBody3D.new()
+	rigid_body.name = bakugan_data.name + "_Body"
+	rigid_body.position = player_throw_point.global_transform.origin
+	rigid_body.gravity_scale = 0.8  # Нормальная гравитация
+	rigid_body.mass = 1.0
+	
+	# ИСПРАВЛЕНИЕ: Добавляем небольшую задержку перед активацией физики
+	rigid_body.freeze = true
+	
 	# Создаем MeshInstance3D
 	var bakugan_instance = MeshInstance3D.new()
 	bakugan_instance.mesh = mesh_res
 	bakugan_instance.name = bakugan_data.name
+	bakugan_instance.scale = Vector3(0.8, 0.8, 0.8)
+	bakugan_instance.position = Vector3.ZERO
 	
-	# Позиционируем бакугана
-	bakugan_instance.position = player_throw_point.global_transform.origin
-	bakugan_instance.scale = Vector3(0.8, 0.8, 0.8)  # Немного уменьшаем размер
+	# Добавляем коллизию к RigidBody3D
+	var collision_shape = CollisionShape3D.new()
+	var sphere_shape = SphereShape3D.new()
+	sphere_shape.radius = 0.8  # Соответствует масштабу
+	collision_shape.shape = sphere_shape
+	
+	# Добавляем компоненты
+	rigid_body.add_child(collision_shape)
+	rigid_body.add_child(bakugan_instance)
 	
 	# Загружаем и применяем текстуру
 	_apply_texture_to_bakugan(bakugan_instance, texture_path)
 	
-	# Добавляем физику (RigidBody3D)
-	var rigid_body = RigidBody3D.new()
-	rigid_body.name = bakugan_data.name + "_Body"
-	rigid_body.position = bakugan_instance.position
-	rigid_body.gravity_scale = 0.5  # Уменьшаем гравитацию для более красивого полета
-	rigid_body.mass = 1.0
-	
-	# Добавляем коллизию
-	var collision_shape = CollisionShape3D.new()
-	var sphere_shape = SphereShape3D.new()
-	sphere_shape.radius = 1.0
-	collision_shape.shape = sphere_shape
-	rigid_body.add_child(collision_shape)
-	
-	# Перемещаем MeshInstance3D в RigidBody3D
-	bakugan_instance.position = Vector3.ZERO
-	rigid_body.add_child(bakugan_instance)
-	
 	# Добавляем в сцену
 	bakugan_root.add_child(rigid_body)
 	spawned_bakugans.append(rigid_body)
+	
+	# Активируем физику через небольшую задержку
+	await get_tree().create_timer(0.1).timeout
+	rigid_body.freeze = false
 	
 	# Обновляем UI
 	_update_bakugan_ui()
@@ -263,13 +272,26 @@ func _spawn_fallback_bakugan(name: String):
 	print("Создаем запасного бакугана:", name)
 	
 	var fallback_mesh = SphereMesh.new()
-	fallback_mesh.radius = 1.0
-	fallback_mesh.height = 2.0
+	fallback_mesh.radius = 0.8
+	fallback_mesh.height = 1.6
+	
+	# Создаем RigidBody3D для запасного бакугана
+	var rigid_body = RigidBody3D.new()
+	rigid_body.name = name + "_Body"
+	rigid_body.position = player_throw_point.global_transform.origin
+	rigid_body.gravity_scale = 0.8
+	rigid_body.mass = 1.0
+	rigid_body.freeze = true
 	
 	var bakugan_instance = MeshInstance3D.new()
 	bakugan_instance.mesh = fallback_mesh
 	bakugan_instance.name = name
-	bakugan_instance.position = player_throw_point.global_transform.origin
+	bakugan_instance.position = Vector3.ZERO
+	
+	var collision_shape = CollisionShape3D.new()
+	var sphere_shape = SphereShape3D.new()
+	sphere_shape.radius = 0.8
+	collision_shape.shape = sphere_shape
 	
 	# Создаем яркий материал
 	var material = StandardMaterial3D.new()
@@ -280,24 +302,15 @@ func _spawn_fallback_bakugan(name: String):
 	material.roughness = 0.4
 	bakugan_instance.material_override = material
 	
-	# Добавляем физику
-	var rigid_body = RigidBody3D.new()
-	rigid_body.name = name + "_Body"
-	rigid_body.position = bakugan_instance.position
-	rigid_body.gravity_scale = 0.5
-	rigid_body.mass = 1.0
-	
-	var collision_shape = CollisionShape3D.new()
-	var sphere_shape = SphereShape3D.new()
-	sphere_shape.radius = 1.0
-	collision_shape.shape = sphere_shape
 	rigid_body.add_child(collision_shape)
-	
-	bakugan_instance.position = Vector3.ZERO
 	rigid_body.add_child(bakugan_instance)
 	
 	bakugan_root.add_child(rigid_body)
 	spawned_bakugans.append(rigid_body)
+	
+	# Активируем физику через небольшую задержку
+	await get_tree().create_timer(0.1).timeout
+	rigid_body.freeze = false
 	
 	_update_bakugan_ui()
 
@@ -390,7 +403,7 @@ func _start_throw_animation():
 	
 	# Начальная и конечная позиция
 	var start_pos = bakugan_body.position
-	var end_pos = Vector3(0, 0.5, 0)  # Центр поля
+	var end_pos = Vector3(0, 1.0, 0)  # ИСПРАВЛЕНИЕ: Поднимаем конечную позицию выше поля
 	
 	# Создаем параболическую траекторию
 	var mid_pos = Vector3(
@@ -422,8 +435,8 @@ func _on_throw_animation_complete(bakugan_body: RigidBody3D):
 	# Включаем физику обратно
 	bakugan_body.freeze = false
 	
-	# Добавляем небольшой импульс для отскока
-	bakugan_body.apply_central_impulse(Vector3(0, 2, 0))
+	# ИСПРАВЛЕНИЕ: Добавляем небольшой импульс вниз для лучшего приземления
+	bakugan_body.apply_central_impulse(Vector3(0, -2, 0))
 	
 	# Запускаем анимацию "открытия" бакугана
 	_start_open_animation(bakugan_body)
