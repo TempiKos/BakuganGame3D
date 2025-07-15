@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dyf6y5w6iluig" path="res://Scripts/SelectPackScene.gd" id="1_3q0s5"]
 [ext_resource type="ArrayMesh" uid="uid://bp4gnbgvu0bwe" path="res://closed_obj/5DCE4AA322A1EE89835AF205F36DC641DA59B16E_Saurus Closed.obj" id="1_w0gbj"]
-[ext_resource type="Texture2D" uid="uid://on2tskeiisd6" path="res://TexturesBakugans/BF1CBB1F3B2434C729A43BFD7CA68AD94AA29AC4_saurus pyrus hd.png" id="2_3q0s5"]
+[ext_resource type="Texture2D" uid="uid://on2tskeiisd6" path="res://TexturesBakugans/Pyrus/BF1CBB1F3B2434C729A43BFD7CA68AD94AA29AC4_saurus pyrus hd.png" id="2_3q0s5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kg3fj"]
 albedo_texture = ExtResource("2_3q0s5")
@@ -149,7 +149,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -200.0
-offset_top = -130.0
+offset_top = -142.0
 offset_right = 200.0
 grow_horizontal = 2
 grow_vertical = 0

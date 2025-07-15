@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Bakugan3D_test"
+config/name="Bakugame3D"
+run/main_scene="uid://dd7p27gubshky"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Icon/icon.svg"
 
 [autoload]
 
