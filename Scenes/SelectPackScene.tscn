@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://edw4qjfy4cn6"]
 
 [ext_resource type="Script" uid="uid://dyf6y5w6iluig" path="res://Scripts/SelectPackScene.gd" id="1_3q0s5"]
-[ext_resource type="ArrayMesh" uid="uid://bp4gnbgvu0bwe" path="res://closed_obj/5DCE4AA322A1EE89835AF205F36DC641DA59B16E_Saurus Closed.obj" id="1_w0gbj"]
-[ext_resource type="Texture2D" uid="uid://on2tskeiisd6" path="res://TexturesBakugans/Pyrus/BF1CBB1F3B2434C729A43BFD7CA68AD94AA29AC4_saurus pyrus hd.png" id="2_3q0s5"]
+[ext_resource type="ArrayMesh" uid="uid://c0ng8cr8w2513" path="res://Textures/TexturesBakugans/ModelClose/Saurus Closed.obj" id="1_w0gbj"]
+[ext_resource type="Texture2D" uid="uid://b6yq0ul061xyh" path="res://Textures/TexturesBakugans/Pyrus/saurus pyrus hd.png" id="2_3q0s5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kg3fj"]
 albedo_texture = ExtResource("2_3q0s5")
@@ -28,25 +28,43 @@ albedo_texture = ExtResource("2_3q0s5")
 [node name="SelectPackScene" type="Node3D"]
 script = ExtResource("1_3q0s5")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-custom_minimum_size = Vector2(350, 350)
-offset_right = 512.0
-offset_bottom = 512.0
-scale = Vector2(0.75, 0.75)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="AnimatedBackground" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(640, 360)
+scale = Vector2(2, 2)
+
+[node name="BakuganWrapper1" type="Control" parent="."]
+custom_minimum_size = Vector2(360, 360)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 360.0
+offset_bottom = 360.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="BakuganWrapper1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="BakuganWrapper1/SubViewportContainer"]
 handle_input_locally = false
+size = Vector2i(360, 360)
+size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="Preview3D" type="Node3D" parent="SubViewportContainer/SubViewport"]
+[node name="Preview3D" type="Node3D" parent="BakuganWrapper1/SubViewportContainer/SubViewport"]
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Preview3D"]
+[node name="Camera3D" type="Camera3D" parent="BakuganWrapper1/SubViewportContainer/SubViewport/Preview3D"]
 transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0, 1.5, 3)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Preview3D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="BakuganWrapper1/SubViewportContainer/SubViewport/Preview3D"]
 transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0, 1.5, 3)
 
-[node name="MeshInstance3D_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Preview3D"]
+[node name="MeshInstance3D_1" type="MeshInstance3D" parent="BakuganWrapper1/SubViewportContainer/SubViewport/Preview3D"]
 transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, -0.108387, 1.5, 0.456603)
 mesh = ExtResource("1_w0gbj")
 skeleton = NodePath("../DirectionalLight3D")
@@ -58,35 +76,75 @@ surface_material_override/4 = SubResource("StandardMaterial3D_dtmml")
 surface_material_override/5 = SubResource("StandardMaterial3D_lx8kg")
 surface_material_override/6 = SubResource("StandardMaterial3D_qfxfe")
 
-[node name="RotationTimer" type="Timer" parent="SubViewportContainer/SubViewport/Preview3D"]
+[node name="RotationTimer" type="Timer" parent="BakuganWrapper1/SubViewportContainer/SubViewport/Preview3D"]
 wait_time = 0.01
 autostart = true
 
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="."]
-custom_minimum_size = Vector2(350, 350)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -192.0
-offset_right = 320.0
-offset_bottom = 512.0
+[node name="BakuganNameLabel1" type="Label" parent="BakuganWrapper1"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
 grow_horizontal = 2
-scale = Vector2(0.75, 0.75)
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 18
+text = "Название"
+horizontal_alignment = 1
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer2"]
+[node name="BakuganGPowerLabel1" type="Label" parent="BakuganWrapper1"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 16
+text = "??? G"
+horizontal_alignment = 1
+
+[node name="BakuganWrapper2" type="Control" parent="."]
+custom_minimum_size = Vector2(360, 360)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 360.0
+offset_right = 720.0
+offset_bottom = 360.0
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="BakuganWrapper2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="BakuganWrapper2/SubViewportContainer2"]
 handle_input_locally = false
+size = Vector2i(360, 360)
 render_target_update_mode = 4
 
-[node name="Preview3D" type="Node3D" parent="SubViewportContainer2/SubViewport"]
+[node name="Preview3D" type="Node3D" parent="BakuganWrapper2/SubViewportContainer2/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.90546, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer2/SubViewport/Preview3D"]
+[node name="Camera3D" type="Camera3D" parent="BakuganWrapper2/SubViewportContainer2/SubViewport/Preview3D"]
 transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0, 1.5, 3)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer2/SubViewport/Preview3D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="BakuganWrapper2/SubViewportContainer2/SubViewport/Preview3D"]
 transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0, 1.5, 3)
 
-[node name="MeshInstance3D_2" type="MeshInstance3D" parent="SubViewportContainer2/SubViewport/Preview3D"]
+[node name="MeshInstance3D_2" type="MeshInstance3D" parent="BakuganWrapper2/SubViewportContainer2/SubViewport/Preview3D"]
 transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, -0.108387, 1.5, 0.456603)
 mesh = ExtResource("1_w0gbj")
 skeleton = NodePath("../DirectionalLight3D")
@@ -98,35 +156,76 @@ surface_material_override/4 = SubResource("StandardMaterial3D_dtmml")
 surface_material_override/5 = SubResource("StandardMaterial3D_lx8kg")
 surface_material_override/6 = SubResource("StandardMaterial3D_qfxfe")
 
-[node name="RotationTimer" type="Timer" parent="SubViewportContainer2/SubViewport/Preview3D"]
+[node name="RotationTimer" type="Timer" parent="BakuganWrapper2/SubViewportContainer2/SubViewport/Preview3D"]
 wait_time = 0.01
 autostart = true
 
-[node name="SubViewportContainer3" type="SubViewportContainer" parent="."]
-custom_minimum_size = Vector2(350, 350)
-anchors_preset = 1
-anchor_left = 1.0
+[node name="BakuganNameLabel2" type="Label" parent="BakuganWrapper2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -384.0
-offset_right = 128.0
-offset_bottom = 512.0
-grow_horizontal = 0
-scale = Vector2(0.75, 0.75)
+anchor_bottom = 1.0
+offset_top = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 18
+text = "Название"
+horizontal_alignment = 1
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer3"]
+[node name="BakuganGPowerLabel2" type="Label" parent="BakuganWrapper2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 16
+text = "??? G"
+horizontal_alignment = 1
+
+[node name="BakuganWrapper3" type="Control" parent="."]
+custom_minimum_size = Vector2(360, 360)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 720.0
+offset_right = 1080.0
+offset_bottom = 360.0
+
+[node name="SubViewportContainer3" type="SubViewportContainer" parent="BakuganWrapper3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(-386, 679)
+
+[node name="SubViewport" type="SubViewport" parent="BakuganWrapper3/SubViewportContainer3"]
 handle_input_locally = false
+size = Vector2i(360, 360)
 render_target_update_mode = 4
 
-[node name="Preview3D" type="Node3D" parent="SubViewportContainer3/SubViewport"]
+[node name="Preview3D" type="Node3D" parent="BakuganWrapper3/SubViewportContainer3/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.64076, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer3/SubViewport/Preview3D"]
+[node name="Camera3D" type="Camera3D" parent="BakuganWrapper3/SubViewportContainer3/SubViewport/Preview3D"]
 transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0, 1.5, 3)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer3/SubViewport/Preview3D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="BakuganWrapper3/SubViewportContainer3/SubViewport/Preview3D"]
 transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0, 1.5, 3)
 
-[node name="MeshInstance3D_3" type="MeshInstance3D" parent="SubViewportContainer3/SubViewport/Preview3D"]
+[node name="MeshInstance3D_3" type="MeshInstance3D" parent="BakuganWrapper3/SubViewportContainer3/SubViewport/Preview3D"]
 transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, -0.108387, 1.5, 0.456603)
 mesh = ExtResource("1_w0gbj")
 skeleton = NodePath("../DirectionalLight3D")
@@ -138,35 +237,183 @@ surface_material_override/4 = SubResource("StandardMaterial3D_dtmml")
 surface_material_override/5 = SubResource("StandardMaterial3D_lx8kg")
 surface_material_override/6 = SubResource("StandardMaterial3D_qfxfe")
 
-[node name="RotationTimer" type="Timer" parent="SubViewportContainer3/SubViewport/Preview3D"]
+[node name="RotationTimer" type="Timer" parent="BakuganWrapper3/SubViewportContainer3/SubViewport/Preview3D"]
 wait_time = 0.01
 autostart = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
+[node name="BakuganNameLabel3" type="Label" parent="BakuganWrapper3"]
+layout_mode = 1
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -142.0
-offset_right = 200.0
+offset_top = -60.0
 grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 18
+text = "Название"
+horizontal_alignment = 1
+
+[node name="BakuganGPowerLabel3" type="Label" parent="BakuganWrapper3"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 16
+text = "??? G"
+horizontal_alignment = 1
+
+[node name="AbilityCardsContainer" type="GridContainer" parent="."]
+offset_left = 10.0
+offset_top = 489.0
+offset_right = 1090.0
+offset_bottom = 720.0
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 0
+columns = 6
+
+[node name="Card1" type="TextureButton" parent="AbilityCardsContainer"]
+custom_minimum_size = Vector2(158, 214)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Card2" type="TextureButton" parent="AbilityCardsContainer"]
+custom_minimum_size = Vector2(158, 214)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Card3" type="TextureButton" parent="AbilityCardsContainer"]
+custom_minimum_size = Vector2(158, 214)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Card4" type="TextureButton" parent="AbilityCardsContainer"]
+custom_minimum_size = Vector2(158, 214)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Card5" type="TextureButton" parent="AbilityCardsContainer"]
+custom_minimum_size = Vector2(158, 214)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Card6" type="TextureButton" parent="AbilityCardsContainer"]
+custom_minimum_size = Vector2(158, 214)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="GateCardsContainer" type="GridContainer" parent="."]
+offset_left = 10.0
+offset_top = 720.0
+offset_right = 1090.0
+offset_bottom = 951.0
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="Card7" type="TextureButton" parent="GateCardsContainer"]
+custom_minimum_size = Vector2(158, 214)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Card8" type="TextureButton" parent="GateCardsContainer"]
+custom_minimum_size = Vector2(158, 214)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Card9" type="TextureButton" parent="GateCardsContainer"]
+custom_minimum_size = Vector2(158, 214)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="CardInfoPanel" type="Panel" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -598.0
+offset_top = -540.0
+offset_bottom = 260.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="CardInfoLabel" type="Label" parent="CardInfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Нажмите на карту для просмотра информации"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -598.0
+offset_top = -247.0
+grow_horizontal = 0
 grow_vertical = 0
 
 [node name="Выбери набор" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 48
 text = "Выбрать этот набор"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ConfirmButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 48
 text = "Выбрать этот набор"
 
 [node name="BackButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 48
 text = "Выбрать другую стихию"

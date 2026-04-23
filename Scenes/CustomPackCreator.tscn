@@ -1,0 +1,432 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbubkd167f8tx"]
+
+[ext_resource type="Script" uid="uid://cg7s6vfhgnlau" path="res://Scripts/CustomPackCreator.gd" id="1"]
+
+[node name="CustomPackCreator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.07, 0.12, 1)
+
+[node name="StepNamePanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StepNamePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Title" type="Label" parent="StepNamePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Создание нового набора"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="StepNamePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Введите название для вашего набора:"
+horizontal_alignment = 1
+
+[node name="PackNameInput" type="LineEdit" parent="StepNamePanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+placeholder_text = "Название набора..."
+max_length = 30
+
+[node name="NameErrorLabel" type="Label" parent="StepNamePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="NextButton" type="Button" parent="StepNamePanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Далее → Выбор стихии"
+
+[node name="BackToMenuButton" type="Button" parent="StepNamePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "← Назад в меню"
+
+[node name="StepElementPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StepElementPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = 28.0
+offset_right = -28.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Title" type="Label" parent="StepElementPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Выберите стихию"
+horizontal_alignment = 1
+
+[node name="ElementGrid" type="GridContainer" parent="StepElementPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 3
+
+[node name="BackButton" type="Button" parent="StepElementPanel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 16
+text = "← Назад"
+
+[node name="StepContentPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StepContentPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = -16.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="StepContentPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Выберите содержимое набора"
+horizontal_alignment = 1
+
+[node name="TabContainer" type="TabContainer" parent="StepContentPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Бакуганы" type="Control" parent="StepContentPanel/VBoxContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="BakuganHBox" type="HBoxContainer" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -175.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BakuganSlot1" type="VBoxContainer" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot1"]
+custom_minimum_size = Vector2(240, 260)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="SubViewport" type="SubViewport" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot1/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(240, 260)
+size_2d_override_stretch = true
+render_target_update_mode = 0
+
+[node name="Preview3D" type="Node3D" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot1/SubViewportContainer/SubViewport"]
+
+[node name="Camera3D" type="Camera3D" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot1/SubViewportContainer/SubViewport/Preview3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 3)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot1/SubViewportContainer/SubViewport/Preview3D"]
+transform = Transform3D(1, 0, 0, 0, 0.707, 0.707, 0, -0.707, 0.707, 0, 3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot1/SubViewportContainer/SubViewport/Preview3D"]
+
+[node name="ClickOverlay" type="Button" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot1/SubViewportContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+flat = true
+
+[node name="NameLabel" type="Label" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 16
+text = "Слот 1"
+horizontal_alignment = 1
+
+[node name="GPowerLabel" type="Label" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+
+[node name="BakuganSlot2" type="VBoxContainer" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot2"]
+custom_minimum_size = Vector2(240, 260)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="SubViewport" type="SubViewport" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot2/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(240, 260)
+size_2d_override_stretch = true
+render_target_update_mode = 0
+
+[node name="Preview3D" type="Node3D" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot2/SubViewportContainer/SubViewport"]
+
+[node name="Camera3D" type="Camera3D" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot2/SubViewportContainer/SubViewport/Preview3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 3)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot2/SubViewportContainer/SubViewport/Preview3D"]
+transform = Transform3D(1, 0, 0, 0, 0.707, 0.707, 0, -0.707, 0.707, 0, 3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot2/SubViewportContainer/SubViewport/Preview3D"]
+
+[node name="ClickOverlay" type="Button" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot2/SubViewportContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+flat = true
+
+[node name="NameLabel" type="Label" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 16
+text = "Слот 2"
+horizontal_alignment = 1
+
+[node name="GPowerLabel" type="Label" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+
+[node name="BakuganSlot3" type="VBoxContainer" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot3"]
+custom_minimum_size = Vector2(240, 260)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="SubViewport" type="SubViewport" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot3/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(240, 260)
+size_2d_override_stretch = true
+render_target_update_mode = 0
+
+[node name="Preview3D" type="Node3D" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot3/SubViewportContainer/SubViewport"]
+
+[node name="Camera3D" type="Camera3D" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot3/SubViewportContainer/SubViewport/Preview3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 3)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot3/SubViewportContainer/SubViewport/Preview3D"]
+transform = Transform3D(1, 0, 0, 0, 0.707, 0.707, 0, -0.707, 0.707, 0, 3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot3/SubViewportContainer/SubViewport/Preview3D"]
+
+[node name="ClickOverlay" type="Button" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot3/SubViewportContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+flat = true
+
+[node name="NameLabel" type="Label" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 16
+text = "Слот 3"
+horizontal_alignment = 1
+
+[node name="GPowerLabel" type="Label" parent="StepContentPanel/VBoxContainer/TabContainer/Бакуганы/BakuganHBox/BakuganSlot3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+
+[node name="Карты способностей" type="Control" parent="StepContentPanel/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="AbilityGrid" type="GridContainer" parent="StepContentPanel/VBoxContainer/TabContainer/Карты способностей"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 6
+
+[node name="Карты ворот" type="Control" parent="StepContentPanel/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="GateHBox" type="HBoxContainer" parent="StepContentPanel/VBoxContainer/TabContainer/Карты ворот"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="SaveErrorLabel" type="Label" parent="StepContentPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ButtonRow" type="HBoxContainer" parent="StepContentPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BackToElementButton" type="Button" parent="StepContentPanel/VBoxContainer/ButtonRow"]
+custom_minimum_size = Vector2(200, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "← Назад к стихии"
+
+[node name="SaveButton" type="Button" parent="StepContentPanel/VBoxContainer/ButtonRow"]
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.5, 1)
+theme_override_font_sizes/font_size = 18
+text = "✔ Сохранить набор"
+
+[node name="PickerOverlay" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PickerOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="PickerTitle" type="Label" parent="PickerOverlay/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Выберите элемент"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PickerOverlay/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PickerGrid" type="GridContainer" parent="PickerOverlay/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 6
+
+[node name="CloseButton" type="Button" parent="PickerOverlay/VBoxContainer"]
+custom_minimum_size = Vector2(200, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "✕  Закрыть"

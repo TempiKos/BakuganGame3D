@@ -1,8 +1,799 @@
-[gd_scene load_steps=2 format=3 uid="uid://BattleScene"]
+[gd_scene load_steps=2 format=3 uid="uid://cupqc5tcjhcgf"]
+
+[ext_resource type="Script" uid="uid://cmu482qfel4wb" path="res://Scripts/BattleScene.gd" id="1_12f34"]
 
 [node name="BattleScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_12f34")
 
-[node name="Label" type="Label" parent="."]
-text = "Заглушка сцены боя. Выбранный набор: %s"
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.06, 0.1, 1)
+
+[node name="TurnLabel" type="Label" parent="."]
+z_index = 10
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -140.0
+offset_top = 6.0
+offset_right = 140.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.5, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "⚔ Ваш ход"
+horizontal_alignment = 1
+
+[node name="VerticalLine" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.78
+offset_left = -1.0
+offset_right = 1.0
+grow_horizontal = 2
+color = Color(0.1, 0.2, 0.3, 0.5)
+
+[node name="HorizontalLine" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.39
+anchor_right = 1.0
+anchor_bottom = 0.39
+offset_bottom = 2.0
+grow_vertical = 2
+color = Color(0.1, 0.2, 0.3, 0.5)
+
+[node name="PlayerPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.18
+anchor_bottom = 0.78
+offset_left = 16.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="PlayerPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="PlayerLabel" type="Label" parent="PlayerPanel/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Dan: 3 Ball(s)"
+horizontal_alignment = 1
+
+[node name="PlayerBakuganDisplay" type="Panel" parent="PlayerPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="NoBakuganLabel" type="Label" parent="PlayerPanel/VBox/PlayerBakuganDisplay"]
+modulate = Color(0, 1, 1, 0.5)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "NO BAKUGAN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerNameDisplay" type="Panel" parent="PlayerPanel/VBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="PlayerPanel/VBox/PlayerNameDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerGPower" type="Panel" parent="PlayerPanel/VBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GPowerLabel" type="Label" parent="PlayerPanel/VBox/PlayerGPower"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "--- G"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.82
+anchor_right = 1.0
+anchor_bottom = 0.78
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="EnemyPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="EnemyLabel" type="Label" parent="EnemyPanel/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Masquerade: 3 Ball(s)"
+horizontal_alignment = 1
+
+[node name="EnemyBakuganDisplay" type="Panel" parent="EnemyPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="NoBakuganLabel" type="Label" parent="EnemyPanel/VBox/EnemyBakuganDisplay"]
+modulate = Color(0, 1, 1, 0.5)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "NO BAKUGAN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyNameDisplay" type="Panel" parent="EnemyPanel/VBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="EnemyPanel/VBox/EnemyNameDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyGPower" type="Panel" parent="EnemyPanel/VBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EGPowerLabel" type="Label" parent="EnemyPanel/VBox/EnemyGPower"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "--- G"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BattleFieldArea" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.18
+anchor_top = 0.08
+anchor_right = 0.82
+anchor_bottom = 0.78
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FieldViewportContainer" type="SubViewportContainer" parent="BattleFieldArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="FieldViewport" type="SubViewport" parent="BattleFieldArea/FieldViewportContainer"]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(1212, 739)
+render_target_update_mode = 4
+
+[node name="FieldScene" type="Node3D" parent="BattleFieldArea/FieldViewportContainer/FieldViewport"]
+
+[node name="FieldCamera" type="Camera3D" parent="BattleFieldArea/FieldViewportContainer/FieldViewport/FieldScene"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 10, 0)
+projection = 1
+size = 8.5
+
+[node name="FieldLight" type="DirectionalLight3D" parent="BattleFieldArea/FieldViewportContainer/FieldViewport/FieldScene"]
+transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 0, 5, 0)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="AmbientLight" type="OmniLight3D" parent="BattleFieldArea/FieldViewportContainer/FieldViewport/FieldScene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 2)
+light_color = Color(0.4, 0.6, 1, 1)
+light_energy = 0.5
+omni_range = 30.0
+
+[node name="FieldPlane" type="MeshInstance3D" parent="BattleFieldArea/FieldViewportContainer/FieldViewport/FieldScene"]
+
+[node name="CellOverlay" type="GridContainer" parent="BattleFieldArea"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08
+anchor_top = 0.06
+anchor_right = 0.92
+anchor_bottom = 0.94
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 4
+
+[node name="CellBtn1" type="Button" parent="BattleFieldArea/CellOverlay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+flat = true
+
+[node name="CellBtn2" type="Button" parent="BattleFieldArea/CellOverlay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+flat = true
+
+[node name="CellBtn3" type="Button" parent="BattleFieldArea/CellOverlay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+flat = true
+
+[node name="CellBtn4" type="Button" parent="BattleFieldArea/CellOverlay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+flat = true
+
+[node name="CellBtn5" type="Button" parent="BattleFieldArea/CellOverlay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+flat = true
+
+[node name="CellBtn6" type="Button" parent="BattleFieldArea/CellOverlay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+flat = true
+
+[node name="CellBtn7" type="Button" parent="BattleFieldArea/CellOverlay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+flat = true
+
+[node name="CellBtn8" type="Button" parent="BattleFieldArea/CellOverlay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+flat = true
+
+[node name="HandPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.78
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HandContainer" type="HBoxContainer" parent="HandPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = -10.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="GateCard1" type="Button" parent="HandPanel/HandContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "GATE"
+expand_icon = true
+
+[node name="GateCard2" type="Button" parent="HandPanel/HandContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "GATE"
+expand_icon = true
+
+[node name="GateCard3" type="Button" parent="HandPanel/HandContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "GATE"
+expand_icon = true
+
+[node name="Spacer" type="Control" parent="HandPanel/HandContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="BakuganSlot1" type="Control" parent="HandPanel/HandContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Bakugan1" type="SubViewportContainer" parent="HandPanel/HandContainer/BakuganSlot1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HandPanel/HandContainer/BakuganSlot1/Bakugan1"]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(80, 2)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Preview3D" type="Node3D" parent="HandPanel/HandContainer/BakuganSlot1/Bakugan1/SubViewport"]
+
+[node name="Camera3D" type="Camera3D" parent="HandPanel/HandContainer/BakuganSlot1/Bakugan1/SubViewport/Preview3D"]
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0, 1.5, 3)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HandPanel/HandContainer/BakuganSlot1/Bakugan1/SubViewport/Preview3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HandPanel/HandContainer/BakuganSlot1/Bakugan1/SubViewport/Preview3D"]
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, -0.108387, 1.5, 0.456603)
+
+[node name="RotationTimer" type="Timer" parent="HandPanel/HandContainer/BakuganSlot1/Bakugan1/SubViewport/Preview3D"]
+wait_time = 0.016
+autostart = true
+
+[node name="BakuganNameLabel1" type="Label" parent="HandPanel/HandContainer/BakuganSlot1"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -42.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 10
+text = "Название"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="BakuganGPowerLabel1" type="Label" parent="HandPanel/HandContainer/BakuganSlot1"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -22.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 11
+text = "??? G"
+horizontal_alignment = 1
+
+[node name="BakuganSlot2" type="Control" parent="HandPanel/HandContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Bakugan2" type="SubViewportContainer" parent="HandPanel/HandContainer/BakuganSlot2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HandPanel/HandContainer/BakuganSlot2/Bakugan2"]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(80, 2)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Preview3D" type="Node3D" parent="HandPanel/HandContainer/BakuganSlot2/Bakugan2/SubViewport"]
+
+[node name="Camera3D" type="Camera3D" parent="HandPanel/HandContainer/BakuganSlot2/Bakugan2/SubViewport/Preview3D"]
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0, 1.5, 3)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HandPanel/HandContainer/BakuganSlot2/Bakugan2/SubViewport/Preview3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HandPanel/HandContainer/BakuganSlot2/Bakugan2/SubViewport/Preview3D"]
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, -0.108387, 1.5, 0.456603)
+
+[node name="RotationTimer" type="Timer" parent="HandPanel/HandContainer/BakuganSlot2/Bakugan2/SubViewport/Preview3D"]
+wait_time = 0.016
+autostart = true
+
+[node name="BakuganNameLabel2" type="Label" parent="HandPanel/HandContainer/BakuganSlot2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -42.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 10
+text = "Название"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="BakuganGPowerLabel2" type="Label" parent="HandPanel/HandContainer/BakuganSlot2"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -22.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 11
+text = "??? G"
+horizontal_alignment = 1
+
+[node name="BakuganSlot3" type="Control" parent="HandPanel/HandContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Bakugan3" type="SubViewportContainer" parent="HandPanel/HandContainer/BakuganSlot3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HandPanel/HandContainer/BakuganSlot3/Bakugan3"]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(80, 2)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Preview3D" type="Node3D" parent="HandPanel/HandContainer/BakuganSlot3/Bakugan3/SubViewport"]
+
+[node name="Camera3D" type="Camera3D" parent="HandPanel/HandContainer/BakuganSlot3/Bakugan3/SubViewport/Preview3D"]
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0, 1.5, 3)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HandPanel/HandContainer/BakuganSlot3/Bakugan3/SubViewport/Preview3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HandPanel/HandContainer/BakuganSlot3/Bakugan3/SubViewport/Preview3D"]
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, -0.108387, 1.5, 0.456603)
+
+[node name="RotationTimer" type="Timer" parent="HandPanel/HandContainer/BakuganSlot3/Bakugan3/SubViewport/Preview3D"]
+wait_time = 0.016
+autostart = true
+
+[node name="BakuganNameLabel3" type="Label" parent="HandPanel/HandContainer/BakuganSlot3"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -42.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 10
+text = "Название"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="BakuganGPowerLabel3" type="Label" parent="HandPanel/HandContainer/BakuganSlot3"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -22.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 11
+text = "??? G"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="HandPanel/HandContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="AbilityCard1" type="Button" parent="HandPanel/HandContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "ABIL"
+expand_icon = true
+
+[node name="AbilityCard2" type="Button" parent="HandPanel/HandContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "ABIL"
+expand_icon = true
+
+[node name="AbilityCard3" type="Button" parent="HandPanel/HandContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "ABIL"
+expand_icon = true
+
+[node name="AbilityCard4" type="Button" parent="HandPanel/HandContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "ABIL"
+expand_icon = true
+
+[node name="AbilityCard5" type="Button" parent="HandPanel/HandContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "ABIL"
+expand_icon = true
+
+[node name="AbilityCard6" type="Button" parent="HandPanel/HandContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "ABIL"
+expand_icon = true
+
+[node name="TurnPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_top = 44.0
+offset_right = 180.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EndTurnButton" type="Button" parent="TurnPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = -6.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 1, 0.45, 1)
+theme_override_font_sizes/font_size = 18
+text = "✔ Закончить ход"
+
+[node name="PauseOverlay" type="ColorRect" parent="."]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="PausePanel" type="Panel" parent="PauseOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -100.0
+offset_right = 160.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="PauseOverlay/PausePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="PauseOverlay/PausePanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Пауза"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseOverlay/PausePanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Продолжить"
+
+[node name="MainMenuButton" type="Button" parent="PauseOverlay/PausePanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Главное меню"
+
+[node name="CardInfoLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="CardInfoOverlay" type="ColorRect" parent="CardInfoLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.5)
+
+[node name="CardInfoPanel" type="Panel" parent="CardInfoLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -350.0
+offset_right = 250.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="CardInfoLayer/CardInfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="CardInfoLabel" type="Label" parent="CardInfoLayer/CardInfoPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CloseButton" type="Button" parent="CardInfoLayer/CardInfoPanel/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Закрыть"
